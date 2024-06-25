@@ -1,6 +1,9 @@
 import Cookies from "js-cookie";
 import { cookies as NextCookies } from "next/headers";
 
+const EXPIRES_IN_DAYS = 30;
+const EXPIRES_IN = 60 * 60 * 24 * 1000 * EXPIRES_IN_DAYS;
+
 export interface CookieStorage<T> {
   get: () => T | undefined;
   has: () => boolean;
@@ -22,7 +25,10 @@ export class CookieClientStorage<T> implements CookieStorage<T> {
   }
 
   set(value: T) {
-    Cookies.set(this.name, JSON.stringify(value), { sameSite: "Strict" });
+    Cookies.set(this.name, JSON.stringify(value), {
+      sameSite: "Strict",
+      expires: EXPIRES_IN_DAYS,
+    });
   }
 
   remove() {
@@ -47,7 +53,10 @@ export class CookieServerStorage<T> implements CookieStorage<T> {
   }
 
   set(value: T) {
-    this.cookies.set(this.name, JSON.stringify(value), { sameSite: "strict" });
+    this.cookies.set(this.name, JSON.stringify(value), {
+      sameSite: "strict",
+      expires: Date.now() + EXPIRES_IN,
+    });
   }
 
   remove() {
