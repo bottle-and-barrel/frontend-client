@@ -24,7 +24,10 @@ export interface AuthResult {
 }
 
 export async function auth(credentials: AuthCredentials) {
-  const { data } = await client.post(ENDPOINT, credentials);
+  const headers = { [skipAuthHeader]: true };
+  const { data } = await client.post(ENDPOINT, credentials, {
+    headers,
+  });
   return data as AuthResult;
 }
 
