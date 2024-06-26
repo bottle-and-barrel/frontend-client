@@ -13,7 +13,7 @@ import {
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 
-function useAuthenticatedQuery<
+function useAuthQuery<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
@@ -23,7 +23,7 @@ function useAuthenticatedQuery<
   queryClient?: QueryClient
 ): DefinedUseQueryResult<TData, TError>;
 
-function useAuthenticatedQuery<
+function useAuthQuery<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
@@ -33,7 +33,7 @@ function useAuthenticatedQuery<
   queryClient?: QueryClient
 ): UseQueryResult<TData, TError>;
 
-function useAuthenticatedQuery<
+function useAuthQuery<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
@@ -43,7 +43,7 @@ function useAuthenticatedQuery<
   queryClient?: QueryClient
 ): UseQueryResult<TData, TError>;
 
-function useAuthenticatedQuery<
+function useAuthQuery<
   TQueryFnData = unknown,
   TError = DefaultError,
   TData = TQueryFnData,
@@ -63,4 +63,4 @@ function useAuthenticatedQuery<
   return useQuery({ ...options, enabled: mounted }, queryClient);
 }
 
-export { useAuthenticatedQuery };
+export default useAuthQuery;
