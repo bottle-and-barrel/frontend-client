@@ -2,7 +2,11 @@ import axios, { InternalAxiosRequestConfig } from "axios";
 import { redirect } from "next/navigation";
 import { authStorage } from "./storage";
 
+export const skipTokenHeader = "X-Skip-Token";
+export const refreshHeader = "X-Token-Refresh";
+
 const tokenInterceptor = async (request: InternalAxiosRequestConfig) => {
+  if (request.headers[skipTokenHeader]) return request;
   const authData = authStorage().get();
   if (authData) {
     setAuthorization(authData.access_token.token, request);
@@ -15,6 +19,7 @@ const tokenInterceptor = async (request: InternalAxiosRequestConfig) => {
 const authErrorInterceptor = async (error: any) => {
   if (error.response === undefined || error.response.status !== 401)
     return Promise.reject(error);
+  if (error.config.headers[refreshHeader]) return Promise.reject(error);
   if (error.config._isRetry) redirect("/sign-in");
 
   const originalRequest = error.config;

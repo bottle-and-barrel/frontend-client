@@ -1,4 +1,4 @@
-import client from "@/lib/axios";
+import client, { refreshHeader, skipTokenHeader } from "@/lib/axios";
 import { type User } from "./user";
 
 const ENDPOINT = "/auth";
@@ -33,7 +33,11 @@ export async function refresh(credentials: AuthRefreshCredentials) {
   const token =
     typeof possibleToken === "string" ? possibleToken : possibleToken.token;
 
-  const headers = { Authorization: `Bearer ${token}` };
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    [refreshHeader]: true,
+    [skipTokenHeader]: true,
+  };
   const { data } = await client.post(`${ENDPOINT}/refresh`, {}, { headers });
   return data as AuthResult;
 }
