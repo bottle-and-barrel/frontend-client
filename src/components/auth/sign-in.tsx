@@ -1,10 +1,13 @@
 "use client";
 
+import useAuthRedirect from "@/hooks/use-auth-redirect";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { signIn } from "./actions";
 
 export default function SignInForm() {
+  useAuthRedirect(true, "/");
+
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("123123");
 
