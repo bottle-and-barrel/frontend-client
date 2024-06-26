@@ -10,4 +10,4 @@ const handler = async (request: NextRequest, response: NextResponse) => {
   return redirect("/sign-in");
 };
 
-export { handler as GET };
+export { handler as GET, handler as POST };
