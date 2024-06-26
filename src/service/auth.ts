@@ -14,3 +14,12 @@ export async function refresh(credentials: AuthRefreshCredentials) {
   authStorage().set(result);
   return result;
 }
+
+export async function me() {
+  return await authApi.me();
+}
+
+export async function logout() {
+  // TODO: Send logout request
+  authStorage().remove();
+}
