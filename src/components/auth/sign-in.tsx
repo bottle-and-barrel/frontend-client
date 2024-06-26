@@ -2,8 +2,16 @@
 
 import useAuthRedirect from "@/hooks/use-auth-redirect";
 import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { signIn } from "./actions";
+
+function SignInErrorMessage() {
+  const params = useSearchParams();
+  const isError = !!params.get("error");
+  if (!isError) return null;
+
+  return <p>Invalid login and/or password</p>;
+}
 
 export default function SignInForm() {
   useAuthRedirect(true, "/");
@@ -11,7 +19,6 @@ export default function SignInForm() {
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("123123");
 
-  const params = useSearchParams();
   return (
     <form action={signIn} className="flex flex-col gap-2">
       <input
@@ -29,7 +36,9 @@ export default function SignInForm() {
       <button type="submit" className="border">
         Send!
       </button>
-      {params.get("error") && <p>Invalid login and/or password</p>}
+      <Suspense>
+        <SignInErrorMessage />
+      </Suspense>
     </form>
   );
 }
