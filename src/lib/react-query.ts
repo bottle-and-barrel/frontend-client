@@ -1,11 +1,13 @@
 import { QueryClientConfig } from "@tanstack/react-query";
+import { AxiosError } from "axios";
 
 export const clientConfig = {
   defaultOptions: {
     queries: {
       throwOnError(error, query) {
-        // TODO: Improve error handling: Add different behaviour for various errors like validation, internet connection, etc.
-        // For now, it's true to follow NextJS redirects from axios auth interceptor
+        if (error instanceof AxiosError) return false;
+
+        // TODO: Return true only for NextRedirect
         return true;
       },
     },
