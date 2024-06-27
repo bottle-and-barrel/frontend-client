@@ -14,7 +14,7 @@ export default function ActionBarSearch({
       <Input type="text" className="h-12" autoComplete="off" />
       <Button
         type="submit"
-        className="absolute top-1/2 right-4 transform -translate-y-1/2"
+        className="hidden absolute top-1/2 right-4 transform -translate-y-1/2 md:block"
         size="sm"
       >
         Поиск

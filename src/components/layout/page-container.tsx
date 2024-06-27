@@ -11,7 +11,10 @@ export default function PageContainer({
 }: PageContainerProps) {
   return (
     <div
-      className={cn("px-8 py-4 size-full flex flex-col", className)}
+      className={cn(
+        "px-4 py-2 size-full flex flex-col md:px-8 md:py-4",
+        className
+      )}
       {...props}
     >
       {children}

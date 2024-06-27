@@ -21,7 +21,7 @@ export default function ActionBarButton({
       {...props}
     >
       <Icon strokeWidth={1} height={32} />
-      <p className="text-xs font-light">{label}</p>
+      <p className="text-xs font-light hidden md:block">{label}</p>
     </Button>
   );
 }
