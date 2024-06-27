@@ -11,7 +11,12 @@ export default function ActionBarSearch({
 }: ActionBarSearchProps) {
   return (
     <form className={cn("relative", className)} {...props}>
-      <Input type="text" className="h-12" autoComplete="off" />
+      <Input
+        type="text"
+        className="h-12"
+        autoComplete="off"
+        placeholder="Найти в B&B"
+      />
       <Button
         type="submit"
         className="hidden absolute top-1/2 right-4 transform -translate-y-1/2 md:block"
