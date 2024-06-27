@@ -1,16 +1,34 @@
+import { cn } from "@/lib/util";
 import Link from "next/link";
+import { HTMLAttributes } from "react";
 import Brand from "../ui/brand";
 import ActionBarButtons from "./action-bar-buttons";
+import ActionBarMenu from "./action-bar-menu";
 import ActionBarSearch from "./action-bar-search";
 
-export default function ActionBar() {
+export interface ActionBarProps extends HTMLAttributes<HTMLDivElement> {
+  setMenuOpened: (state: boolean) => void;
+}
+
+export default function ActionBar({
+  setMenuOpened,
+  className,
+  ...props
+}: ActionBarProps) {
   return (
-    <div className="flex justify-between items-center gap-6">
+    <div
+      className={cn("flex justify-between items-center gap-6", className)}
+      {...props}
+    >
       <Link href="/">
         <Brand />
       </Link>
       <ActionBarSearch className="flex-grow" />
-      <ActionBarButtons />
+      <ActionBarButtons className="hidden sm:flex" />
+      <ActionBarMenu
+        className="block sm:hidden"
+        onClick={(e) => setMenuOpened(true)}
+      />
     </div>
   );
 }
