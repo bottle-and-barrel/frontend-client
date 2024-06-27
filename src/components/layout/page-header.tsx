@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ActionBar from "./action-bar";
 import CategoryBar from "./category-bar";
+import PageBottomNavigation from "./page-bottom-navigation";
 import PageMenu from "./page-menu";
 
 export default function PageHeader() {
@@ -15,6 +16,7 @@ export default function PageHeader() {
       <PageMenu open={menuOpened} onOpenChange={setMenuOpened}>
         This is a sample text
       </PageMenu>
+      <PageBottomNavigation className="sm:hidden" />
     </header>
   );
 }
