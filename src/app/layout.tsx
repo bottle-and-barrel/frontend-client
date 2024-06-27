@@ -1,3 +1,5 @@
+import PageContainer from "@/components/layout/page-container";
+import PageHeader from "@/components/layout/page-header";
 import ReactQueryProvider from "@/components/providers/react-query";
 import type { Metadata } from "next";
 import { Geologica } from "next/font/google";
@@ -32,7 +34,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ReactQueryProvider>{children}</ReactQueryProvider>
+        <ReactQueryProvider>
+          <PageContainer>
+            <PageHeader />
+            {children}
+          </PageContainer>
+        </ReactQueryProvider>
       </body>
     </html>
   );
