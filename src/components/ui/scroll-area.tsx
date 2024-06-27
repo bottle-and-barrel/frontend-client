@@ -3,20 +3,52 @@
 import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
 import * as React from "react";
 
+import useHorizontalScroll from "@/hooks/use-horizontal-scroll";
 import { cn } from "@/lib/util";
+
+export interface ScrollAreaProps
+  extends React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root> {
+  horizontal?: boolean | null;
+  vertical?: boolean | null;
+  useHorizontalScroll?: boolean;
+  horizontalScrollBehaviour?: ScrollBehavior;
+}
 
 const ScrollAreaCorner = ScrollAreaPrimitive.Corner;
 
 const ScrollArea = React.forwardRef<
   React.ElementRef<typeof ScrollAreaPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>
->(({ children, ...props }, ref) => (
-  <ScrollAreaRoot ref={ref} {...props}>
-    <ScrollAreaViewport>{children}</ScrollAreaViewport>
-    <ScrollBar />
-    <ScrollAreaPrimitive.Corner />
-  </ScrollAreaRoot>
-));
+  ScrollAreaProps
+>(
+  (
+    {
+      useHorizontalScroll: useHScroll,
+      horizontalScrollBehaviour = "smooth",
+      vertical = null,
+      horizontal = null,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const scrollRef = useHorizontalScroll<HTMLDivElement>(
+      horizontalScrollBehaviour
+    );
+    const isVertical = vertical === null ? !horizontal : vertical;
+    const isHorizontal = horizontal ?? false;
+
+    return (
+      <ScrollAreaRoot ref={ref} {...props}>
+        <ScrollAreaViewport ref={useHScroll ? scrollRef : undefined}>
+          {children}
+        </ScrollAreaViewport>
+        {isVertical && <ScrollBar orientation="vertical" />}
+        {(isHorizontal || useHScroll) && <ScrollBar orientation="horizontal" />}
+        <ScrollAreaPrimitive.Corner />
+      </ScrollAreaRoot>
+    );
+  }
+);
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
 
 const ScrollAreaRoot = React.forwardRef<
