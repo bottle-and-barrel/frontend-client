@@ -170,6 +170,7 @@ export default function PageFooter({ className, ...props }: PageFooterProps) {
       <FooterInfo />
       <LoadingWrapper
         isLoading={isLoading}
+        isError={isError}
         skeleton={<FooterCategoriesSkeleton />}
       >
         <FooterCategories categories={data || []} />
