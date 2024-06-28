@@ -12,9 +12,12 @@ import PageBottomNavigation from "./page-bottom-navigation";
 import PageMenu from "./page-menu";
 import { PageMenuCategories } from "./page-menu-categories";
 
-function CategoryBarSkeleton() {
+function CategoryBarSkeleton({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
   return (
-    <div className="px-2 py-4 flex gap-4">
+    <div className={cn("px-2 py-4 flex gap-4", className)} {...props}>
       <Skeleton className="h-4 w-[80px]" />
       <Skeleton className="h-4 w-[120px]" />
       <Skeleton className="h-4 w-[95px]" />
@@ -50,7 +53,7 @@ export default function PageHeader() {
       <LoadingWrapper
         isLoading={isLoading}
         isError={isError}
-        skeleton={<CategoryBarSkeleton />}
+        skeleton={<CategoryBarSkeleton className="hidden xs:flex" />}
       >
         <CategoryBar className="mt-2 hidden xs:block" categories={data || []} />
       </LoadingWrapper>
