@@ -37,12 +37,12 @@ export default function PageHeader() {
         isError={isError}
         skeleton={<CategoryBarSkeleton />}
       >
-        <CategoryBar className="mt-2 hidden sm:block" categories={data || []} />
+        <CategoryBar className="mt-2 hidden xs:block" categories={data || []} />
       </LoadingWrapper>
       <PageMenu open={menuOpened} onOpenChange={setMenuOpened}>
         This is a sample text
       </PageMenu>
-      <PageBottomNavigation className="sm:hidden" />
+      <PageBottomNavigation className="xs:hidden" />
     </header>
   );
 }

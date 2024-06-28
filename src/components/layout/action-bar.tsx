@@ -24,9 +24,9 @@ export default function ActionBar({
         <Brand />
       </Link>
       <ActionBarSearch className="flex-grow" />
-      <ActionBarButtons className="hidden sm:flex" />
+      <ActionBarButtons className="hidden xs:flex" />
       <ActionBarMenu
-        className="block sm:hidden"
+        className="block xs:hidden"
         onClick={(e) => setMenuOpened(true)}
       />
     </div>
