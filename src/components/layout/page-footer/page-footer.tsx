@@ -136,7 +136,7 @@ export default function PageFooter({ className, ...props }: PageFooterProps) {
   return (
     <footer
       className={cn(
-        "px-4 py-8 grid grid-cols-1 gap-4 bg-primary border-t-4 border-accent md:grid-cols-3",
+        "px-4 py-8 pb-20 grid grid-cols-1 gap-4 bg-primary border-t-4 border-accent md:grid-cols-3 md:pb-8",
         className
       )}
       {...props}
