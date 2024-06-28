@@ -6,6 +6,7 @@ import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
 import { Category, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
+import Image from "next/image";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 
@@ -64,6 +65,31 @@ function FooterInfo() {
             info@bottlebarrel.ru
           </a>
         </p>
+      </div>
+      <div>
+        <p className="text-neutral-400">Мы в соцсетях:</p>
+        <ul className="flex gap-4 pt-1">
+          <li>
+            <Link href="https://vk.com" target="_blank">
+              <Image
+                src="/images/icons/vk.svg"
+                alt="vk"
+                width={24}
+                height={24}
+              />
+            </Link>
+          </li>
+          <li>
+            <Link href="https://telegram.org" target="_blank">
+              <Image
+                src="/images/icons/telegram.svg"
+                alt="Telegram"
+                width={24}
+                height={24}
+              />
+            </Link>
+          </li>
+        </ul>
       </div>
     </section>
   );
