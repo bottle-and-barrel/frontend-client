@@ -21,7 +21,7 @@ export default function ActionBar({
       {...props}
     >
       <Link href="/">
-        <Brand />
+        <Brand adaptive />
       </Link>
       <ActionBarSearch className="flex-grow" />
       <ActionBarButtons className="hidden xs:flex" />
