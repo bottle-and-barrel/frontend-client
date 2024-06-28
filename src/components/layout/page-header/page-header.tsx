@@ -1,13 +1,13 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
+import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
 import { all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
 import { HTMLAttributes, useState } from "react";
-import { Skeleton } from "../ui/skeleton";
-import LoadingWrapper from "../util/loading-wrapper";
-import ActionBar from "./action-bar";
-import CategoryBar from "./category-bar";
+import ActionBar from "../action-bar/action-bar";
+import CategoryBar from "../category-bar/category-bar";
 import PageBottomNavigation from "./page-bottom-navigation";
 import PageMenu from "./page-menu";
 import { PageMenuCategories } from "./page-menu-categories";

@@ -1,5 +1,10 @@
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import { DialogProps } from "@radix-ui/react-dialog";
-import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 
 export interface PageMenuProps extends DialogProps {
   title?: string;

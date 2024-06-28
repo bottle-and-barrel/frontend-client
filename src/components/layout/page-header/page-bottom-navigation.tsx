@@ -1,12 +1,12 @@
 "use client";
 
-import { Heart, Home, ShoppingCart, User } from "lucide-react";
-import { usePathname } from "next/navigation";
 import {
   NavigationBar,
   NavigationBarButton,
   NavigationBarProps,
-} from "../ui/navigation-bar";
+} from "@/components/ui/navigation-bar";
+import { Heart, Home, ShoppingCart, User } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 export interface PageBottomNavigationProps extends NavigationBarProps {}
 

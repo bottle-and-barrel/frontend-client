@@ -1,5 +1,5 @@
 import { Menu } from "lucide-react";
-import { Button, ButtonProps } from "../ui/button";
+import { Button, ButtonProps } from "../../ui/button";
 
 export interface ActionBarMenuProps extends ButtonProps {}
 

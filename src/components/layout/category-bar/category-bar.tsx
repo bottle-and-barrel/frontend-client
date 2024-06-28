@@ -1,14 +1,14 @@
-import { Category } from "@/service/category";
-import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
-import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
   navigationMenuTriggerStyle,
-} from "../ui/navigation-menu";
-import { ScrollArea } from "../ui/scroll-area";
+} from "@/components/ui/navigation-menu";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Category } from "@/service/category";
+import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";
+import Link from "next/link";
 
 export interface CategoryBarProps extends NavigationMenuProps {
   categories: Category[];

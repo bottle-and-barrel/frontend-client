@@ -1,6 +1,6 @@
 import { cn } from "@/lib/util";
 import { LucideProps } from "lucide-react";
-import { Button, ButtonProps } from "../ui/button";
+import { Button, ButtonProps } from "../../ui/button";
 
 export interface ActionBarButtonProps extends ButtonProps {
   icon: React.FC<LucideProps>;

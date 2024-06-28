@@ -1,7 +1,7 @@
 import { cn } from "@/lib/util";
 import { HTMLAttributes } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 
 export interface ActionBarSearchProps extends HTMLAttributes<HTMLFormElement> {}
 
