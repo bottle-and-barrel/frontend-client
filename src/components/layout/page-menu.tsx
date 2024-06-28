@@ -1,12 +1,21 @@
 import { DialogProps } from "@radix-ui/react-dialog";
-import { Sheet, SheetContent } from "../ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "../ui/sheet";
 
-export interface PageMenuProps extends DialogProps {}
+export interface PageMenuProps extends DialogProps {
+  title?: string;
+}
 
-export default function PageMenu({ children, ...props }: PageMenuProps) {
+export default function PageMenu({
+  children,
+  title = "Каталог",
+  ...props
+}: PageMenuProps) {
   return (
     <Sheet {...props}>
-      <SheetContent className="pt-12" side="left">
+      <SheetContent className="pt-6" side="left">
+        <SheetHeader>
+          <SheetTitle className="text-left">{title}</SheetTitle>
+        </SheetHeader>
         {children}
       </SheetContent>
     </Sheet>
