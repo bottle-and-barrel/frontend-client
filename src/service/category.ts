@@ -1,5 +1,7 @@
 import * as categoryApi from "@/api/category";
 
+export const KEY = "category";
+
 export interface Category extends categoryApi.Category {
   link: string;
 }

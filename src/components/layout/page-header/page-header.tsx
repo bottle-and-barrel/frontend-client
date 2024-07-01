@@ -3,7 +3,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
-import { all } from "@/service/category";
+import { KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
 import { HTMLAttributes, useState } from "react";
 import ActionBar from "../action-bar/action-bar";
@@ -43,7 +43,7 @@ export default function PageHeader() {
   const [menuOpened, setMenuOpened] = useState(false);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["categories"],
+    queryKey: [KEY],
     queryFn: all,
   });
 

@@ -4,7 +4,7 @@ import Brand from "@/components/ui/brand";
 import { Skeleton } from "@/components/ui/skeleton";
 import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
-import { Category, all } from "@/service/category";
+import { Category, KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -155,7 +155,7 @@ function FooterLinks(props: HTMLAttributes<HTMLDivElement>) {
 
 export default function PageFooter({ className, ...props }: PageFooterProps) {
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["categories"],
+    queryKey: [KEY],
     queryFn: all,
   });
 
