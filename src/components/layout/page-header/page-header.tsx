@@ -48,7 +48,7 @@ export default function PageHeader() {
   });
 
   return (
-    <header>
+    <header className="pb-2">
       <ActionBar setMenuOpened={setMenuOpened} />
       <LoadingWrapper
         isLoading={isLoading}
