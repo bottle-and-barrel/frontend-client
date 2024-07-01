@@ -1,16 +1,17 @@
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/util";
 import { Category } from "@/service/category";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 
-interface PageMenuCategoryProps extends HTMLAttributes<HTMLLIElement> {
+interface PageMenuCategoryProps extends ButtonProps {
   category: Category;
 }
 export interface PageMenuCategoriesProps
   extends HTMLAttributes<HTMLUListElement> {
   categories: Category[];
+  onCategoryClick?: (category: Category) => void;
 }
 
 function PageMenuItem({
@@ -19,17 +20,21 @@ function PageMenuItem({
   ...props
 }: PageMenuCategoryProps) {
   return (
-    <li className={cn("", className)} {...props}>
-      <Button variant="text" className="py-6 w-full justify-start" asChild>
-        <Link href={category.link}>{category.name}</Link>
-      </Button>
-    </li>
+    <Button
+      variant="text"
+      className={cn("py-6 w-full justify-start", className)}
+      asChild
+      {...props}
+    >
+      <Link href={category.link}>{category.name}</Link>
+    </Button>
   );
 }
 
 export function PageMenuCategories({
   categories,
   className,
+  onCategoryClick = () => {},
   ...props
 }: PageMenuCategoriesProps) {
   return (
@@ -37,7 +42,9 @@ export function PageMenuCategories({
       <ScrollArea type="auto" className="h-full">
         <div className="mr-4 divide-y divide-border">
           {categories.map((c, i) => (
-            <PageMenuItem key={i} category={c} />
+            <li key={i}>
+              <PageMenuItem category={c} onClick={() => onCategoryClick(c)} />
+            </li>
           ))}
         </div>
       </ScrollArea>

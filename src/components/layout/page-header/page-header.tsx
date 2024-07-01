@@ -63,7 +63,10 @@ export default function PageHeader() {
           isError={isError}
           skeleton={<MenuSkeleton />}
         >
-          <PageMenuCategories categories={data || []} />
+          <PageMenuCategories
+            categories={data || []}
+            onCategoryClick={() => setMenuOpened(false)}
+          />
         </LoadingWrapper>
       </PageMenu>
       <PageBottomNavigation className="xs:hidden" />
