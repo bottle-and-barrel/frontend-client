@@ -12,7 +12,7 @@ export default function PageContainer({
   return (
     <div
       className={cn(
-        "px-4 py-2 size-full flex flex-col md:px-8 md:py-4",
+        "px-4 py-2 w-full min-h-full flex flex-col md:px-8 md:py-4",
         className
       )}
       {...props}
