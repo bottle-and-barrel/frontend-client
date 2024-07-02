@@ -8,6 +8,7 @@ export interface NavigationBarButtonProps extends ButtonProps {
   active?: boolean;
   icon: React.FC<LucideProps>;
   label: string;
+  indicator?: string;
 }
 
 export function NavigationBar({ className, ...props }: NavigationBarProps) {
@@ -25,6 +26,7 @@ export function NavigationBar({ className, ...props }: NavigationBarProps) {
 export function NavigationBarButton({
   icon: Icon,
   label,
+  indicator,
   active,
   className,
   ...props
@@ -39,7 +41,14 @@ export function NavigationBarButton({
       data-active={active}
       {...props}
     >
-      <Icon strokeWidth={active ? 1.5 : 1} height={48} />
+      <div className="relative">
+        <Icon strokeWidth={active ? 1.5 : 1} height={48} />
+        {indicator && (
+          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-light text-white bg-accent border-2 border-white rounded-full top-1 -end-2">
+            {indicator}
+          </div>
+        )}
+      </div>
       <p className="text-xs font-light">{label}</p>
     </Button>
   );

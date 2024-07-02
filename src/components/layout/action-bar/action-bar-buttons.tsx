@@ -1,4 +1,7 @@
-import { cn } from "@/lib/util";
+"use client";
+
+import useBoundStore from "@/hooks/use-bound-store";
+import { cn, toIndicator } from "@/lib/util";
 import { Heart, ShoppingCart } from "lucide-react";
 import { HTMLAttributes } from "react";
 import ActionBarButton from "./action-bar-button";
@@ -11,10 +14,16 @@ export default function ActionBarButtons({
   className,
   ...props
 }: ActionBarButtonsProps) {
+  const favorites = useBoundStore((state) => state.favorites);
+
   return (
     <ul className={cn("flex md:gap-1", className)}>
       <li>
-        <ActionBarButton icon={Heart} label="Избранное" />
+        <ActionBarButton
+          icon={Heart}
+          label="Избранное"
+          indicator={toIndicator(favorites)}
+        />
       </li>
       <li>
         <ActionBarButton icon={ShoppingCart} label="Корзина" />
