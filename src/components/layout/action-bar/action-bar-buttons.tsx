@@ -17,7 +17,7 @@ export default function ActionBarButtons({
   const favorites = useBoundStore((state) => state.favorites);
 
   return (
-    <ul className={cn("flex md:gap-1", className)}>
+    <ul className={cn("flex md:gap-1", className)} {...props}>
       <li>
         <ActionBarButton
           icon={Heart}
