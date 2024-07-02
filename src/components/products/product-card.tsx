@@ -1,6 +1,10 @@
+"use client";
+
 import { Product } from "@/api/product";
+import useFavorite from "@/hooks/use-favorite";
 import { cn } from "@/lib/util";
-import { HTMLAttributes } from "react";
+import { HeartIcon } from "lucide-react";
+import { HTMLAttributes, useState } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
 import ImageWithFallback from "../util/image-with-fallback";
@@ -15,15 +19,37 @@ export default function ProductCard({
   ...props
 }: ProductCardProps) {
   const priceWithoutDiscount = product.price * 1.4;
+  const [isFavorite, setFavorite] = useFavorite(product.id);
+
+  const [heartBeat, setHeartbeat] = useState(false);
 
   return (
     <div
       className={cn(
-        "p-4 flex flex-col items-center gap-2 transition hover:scale-105 hover:bg-secondary",
+        "relative p-4 flex flex-col items-center gap-2 transition hover:scale-105 hover:bg-secondary",
         className
       )}
       {...props}
     >
+      <div className="absolute right-4 top-4 z-10">
+        <Button
+          variant="text"
+          size="icon"
+          title="Добавить в избранное"
+          className={cn(
+            `text-primary/30 transition hover:text-primary/50 hover:scale-110`,
+            heartBeat && "animate-[heart-pulse_ease-in-out_0.5s]"
+          )}
+          onClick={(e) => {
+            setHeartbeat(true);
+            setFavorite(!isFavorite);
+          }}
+          onAnimationEnd={(e) => setHeartbeat(false)}
+        >
+          <HeartIcon fill={isFavorite ? "hsl(var(--accent))" : "transparent"} />
+        </Button>
+      </div>
+
       <div className="relative w-full aspect-square">
         <ImageWithFallback
           className="object-contain"
