@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { syncTabs } from "zustand-sync-tabs";
 import createFavoriteSlice, { FavoriteSlice } from "../store/favorite";
 
 type StoreType = FavoriteSlice;
 
 const useBoundStore = create<StoreType>()(
-  persist(
+  syncTabs(
     (...a) => ({
       ...createFavoriteSlice(...a),
     }),
