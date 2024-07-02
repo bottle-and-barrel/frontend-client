@@ -21,8 +21,8 @@ export default function ProductListSkeleton({
       )}
       {...props}
     >
-      {products.map((v) => (
-        <li key={v}>
+      {products.map((v, i) => (
+        <li key={i}>
           <ProductCardSkeleton />
         </li>
       ))}
