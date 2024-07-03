@@ -26,5 +26,11 @@ export default function WishlistPage() {
   const favorites = useBoundStore((state) => state.favorites);
 
   if (favorites.length === 0) return <WishlistNoItems />;
-  return <CardList items={favorites} itemBase={ProductCard} />;
+  return (
+    <CardList
+      items={favorites}
+      itemBase={ProductCard}
+      itemKey={(item) => item}
+    />
+  );
 }
