@@ -1,9 +1,11 @@
 import { cn } from "@/lib/util";
 import { ComponentType, HTMLAttributes } from "react";
 
+type WithOptionalItem<T> = T extends { item: infer U } ? { item: U } : T;
+
 export interface CardListProps<T> extends HTMLAttributes<HTMLUListElement> {
   items: T[];
-  itemBase: ComponentType<{ item: T }>;
+  itemBase: ComponentType<WithOptionalItem<{ item: T }>>;
 }
 
 export default function CardList<T>({
