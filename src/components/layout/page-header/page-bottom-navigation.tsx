@@ -26,7 +26,7 @@ export default function PageBottomNavigation(props: PageBottomNavigationProps) {
       <NavigationBarButton
         icon={Heart}
         label="Избранное"
-        active={pathname == "/favorite"}
+        active={pathname == "/wishlist"}
         indicator={toIndicator(favorites)}
       />
       <NavigationBarButton
