@@ -1,6 +1,7 @@
 "use client";
 
-import ProductList from "@/components/products/product-list";
+import ProductCard from "@/components/products/product-card";
+import CardList from "@/components/ui/card-list";
 import { cn } from "@/lib/util";
 import { KEY, getBySlug } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
@@ -29,7 +30,7 @@ export default function CatalogContent({
           <span className="text-accent font-semibold">по релевантности</span>
         </p>
       </div>
-      <ProductList products={data!.products} />
+      <CardList items={data!.products} itemBase={ProductCard} />
     </section>
   );
 }

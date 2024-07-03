@@ -10,16 +10,16 @@ import { Button } from "../ui/button";
 import ImageWithFallback from "../util/image-with-fallback";
 
 export interface ProductCardProps extends HTMLAttributes<HTMLDivElement> {
-  product: Product;
+  item: Product;
 }
 
 export default function ProductCard({
-  product,
+  item,
   className,
   ...props
 }: ProductCardProps) {
-  const priceWithoutDiscount = product.price * 1.4;
-  const [isFavorite, setFavorite] = useFavorite(product.id);
+  const priceWithoutDiscount = item.price * 1.4;
+  const [isFavorite, setFavorite] = useFavorite(item.id);
 
   const [heartBeat, setHeartbeat] = useState(false);
 
@@ -53,14 +53,14 @@ export default function ProductCard({
       <div className="relative w-full aspect-square">
         <ImageWithFallback
           className="object-contain"
-          src={product.images?.[0]}
+          src={item.images?.[0]}
           fallbackSrc="/images/placeholders/product.png"
-          alt={product.name}
+          alt={item.name}
           fill={true}
         />
       </div>
       <div className="text-center">
-        <h1 className="">{product.name}</h1>
+        <h1 className="">{item.name}</h1>
         <p className="text-sm font-light text-black/50">
           Италия, красное, сухое, 0.75л
         </p>
@@ -71,7 +71,7 @@ export default function ProductCard({
         </p>
         <Badge>-40%</Badge>
       </div>
-      <h2 className="text-xl font-semibold text-accent">{product.price} Р</h2>
+      <h2 className="text-xl font-semibold text-accent">{item.price} Р</h2>
       <Button>В корзину</Button>
     </div>
   );
