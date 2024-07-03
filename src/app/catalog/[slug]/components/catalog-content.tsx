@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCard from "@/components/products/product-card";
+import ProductCard from "@/components/products/product-card-base";
 import CardList from "@/components/ui/card-list";
 import { cn } from "@/lib/util";
 import { KEY, getBySlug } from "@/service/category";
