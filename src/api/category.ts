@@ -1,4 +1,4 @@
-import { Product } from "./product";
+import { Product, products } from "./product";
 
 export interface Category {
   name: string;
@@ -10,18 +10,7 @@ const categories = [
   {
     name: "Вино",
     slug: "wine",
-    products: [
-      {
-        id: 1,
-        name: "Вино Shiraz Mr Borio's, Simonsig, 2021",
-        description:
-          "Светло-соломенный цвет с зеленоватыми оттенками. Аромат с тонами цветов, миндаля и экзотических фруктов. Сбалансированное, освежающее вино с гармоничной кислотностью, гармоничным сочетанием фруктового вкуса и минеральной солёности в послевкусии.",
-        price: 2490,
-        sku: "147564",
-        slug: "shiraz_mr_borio_s_2021",
-        status: "visible",
-      },
-    ],
+    products,
   },
   { name: "Шампанское и игристое", slug: "champagne", products: [] },
   { name: "Виски", slug: "whiskey", products: [] },
