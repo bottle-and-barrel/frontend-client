@@ -15,7 +15,7 @@ export function NavigationBar({ className, ...props }: NavigationBarProps) {
   return (
     <nav
       className={cn(
-        "px-4 flex gap-2 border-t w-full bg-background fixed left-0 bottom-0 z-10",
+        "px-4 flex gap-2 border-t w-full bg-background fixed left-0 bottom-0 z-30",
         className
       )}
       {...props}
