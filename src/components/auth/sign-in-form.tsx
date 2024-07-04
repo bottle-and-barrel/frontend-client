@@ -1,3 +1,5 @@
+"use client";
+
 import signInForm, { SignInData } from "@/lib/forms/sign-in";
 import { getFormData } from "@/lib/util";
 import { zodResolver } from "@hookform/resolvers/zod";
