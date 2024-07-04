@@ -1,12 +1,10 @@
 import client, { skipAuthHeader, skipTokenHeader } from "@/lib/axios";
+import { SignInData } from "@/lib/forms/sign-in";
 import { type User } from "./user";
 
 const ENDPOINT = "/auth";
 
-export interface AuthCredentials {
-  email: string;
-  password: string;
-}
+export interface AuthCredentials extends SignInData {}
 
 export interface AuthRefreshCredentials {
   refresh_token: AuthToken | string;
