@@ -24,22 +24,28 @@ export default function PageBottomNavigation(props: PageBottomNavigationProps) {
 
   return (
     <NavigationBar {...props}>
-      <NavigationBarButton
-        icon={Home}
-        label="Главная"
-        active={pathname == "/"}
-      />
-      <NavigationBarButton
-        icon={Heart}
-        label="Избранное"
-        active={pathname == "/wishlist"}
-        indicator={toIndicator(favorites)}
-      />
-      <NavigationBarButton
-        icon={ShoppingCart}
-        label="Корзина"
-        active={pathname == "/cart"}
-      />
+      <Link href="/">
+        <NavigationBarButton
+          icon={Home}
+          label="Главная"
+          active={pathname == "/"}
+        />
+      </Link>
+      <Link href="/wishlist">
+        <NavigationBarButton
+          icon={Heart}
+          label="Избранное"
+          active={pathname == "/wishlist"}
+          indicator={toIndicator(favorites)}
+        />
+      </Link>
+      <Link href="/cart">
+        <NavigationBarButton
+          icon={ShoppingCart}
+          label="Корзина"
+          active={pathname == "/cart"}
+        />
+      </Link>
       <Link href={isLoggedIn ? "/cabinet" : "/sign-in"}>
         <NavigationBarButton
           icon={User}
