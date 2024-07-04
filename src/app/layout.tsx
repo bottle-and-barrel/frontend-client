@@ -2,6 +2,7 @@ import PageContainer from "@/components/layout/page-container";
 import PageFooter from "@/components/layout/page-footer/page-footer";
 import PageHeader from "@/components/layout/page-header/page-header";
 import ReactQueryProvider from "@/components/providers/react-query";
+import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/util";
 import type { Metadata } from "next";
 import { Geologica } from "next/font/google";
@@ -43,6 +44,7 @@ export default function RootLayout({
           </PageContainer>
           <PageFooter className="mt-auto" />
         </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
