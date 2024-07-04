@@ -1,8 +1,8 @@
 import { cn } from "@/lib/util";
 import { LucideProps } from "lucide-react";
-import { Button, ButtonProps } from "../../ui/button";
+import { HTMLAttributes } from "react";
 
-export interface ActionBarButtonProps extends ButtonProps {
+export interface ActionBarButtonProps extends HTMLAttributes<HTMLDivElement> {
   icon: React.FC<LucideProps>;
   label: string;
   indicator?: string;
@@ -15,13 +15,10 @@ export default function ActionBarButton({
   indicator,
   ...props
 }: ActionBarButtonProps) {
+  const elementClass =
+    "rounded-md px-3 flex flex-col justify-center items-center h-16 text-primary hover:text-accent";
   return (
-    <Button
-      variant="text"
-      size="sm"
-      className={cn("flex-col h-16", className)}
-      {...props}
-    >
+    <div className={cn(elementClass, className)} {...props}>
       <div className="relative">
         <Icon strokeWidth={1} height={32} />
         {indicator && (
@@ -31,6 +28,6 @@ export default function ActionBarButton({
         )}
       </div>
       <p className="text-xs font-light hidden md:block">{label}</p>
-    </Button>
+    </div>
   );
 }
