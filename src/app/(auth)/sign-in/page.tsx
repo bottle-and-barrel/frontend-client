@@ -4,17 +4,14 @@ import SignInForm from "@/components/auth/sign-in-form";
 import { useToast } from "@/components/ui/use-toast";
 import useAuthRedirect from "@/hooks/use-auth-redirect";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export default function SignInPage() {
   useAuthRedirect(true, "/");
-
-  const router = useRouter();
   const { toast } = useToast();
 
   const successHandler = () => {
     toast({ title: "Добро пожаловать!" });
-    router.replace("/");
+    window.location.replace("/");
   };
 
   return (

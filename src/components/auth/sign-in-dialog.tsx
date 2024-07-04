@@ -26,6 +26,7 @@ export default function SignInDialog({
   const successHandler = () => {
     toast({ title: "Добро пожаловать!" });
     triggerRef.current?.click();
+    window.location.reload();
   };
   const failHandler = (error: AuthError) => {
     toast({ variant: "destructive", title: "Неправильный логин и/или пароль" });
