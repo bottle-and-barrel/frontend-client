@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 const handler = async (request: NextRequest, response: NextResponse) => {
   await logout();
   authStorage(cookies()).remove();
-  return redirect("/sign-in");
+  return redirect("/");
 };
 
 export { handler as GET, handler as POST };
