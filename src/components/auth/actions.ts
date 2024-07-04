@@ -6,15 +6,22 @@ import { signIn as doSignIn } from "@/service/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
+interface ActionData extends AuthCredentials {
+  redirect?: boolean;
+}
+
 export async function signIn(formData: FormData) {
-  const data = Object.fromEntries(formData) as unknown as AuthCredentials;
+  const dataObject = Object.fromEntries(formData) as unknown as ActionData;
+  const { redirect: shouldRedirect, ...credentials } = dataObject;
 
   try {
-    const authResult = await doSignIn(data);
+    const authResult = await doSignIn(credentials);
     authStorage(cookies()).set(authResult);
   } catch {
-    redirect("/sign-in?error=credentials");
+    if (shouldRedirect) redirect("/sign-in?error=credentials");
+    return false;
   }
 
-  redirect("/");
+  if (shouldRedirect) redirect("/");
+  return true;
 }
