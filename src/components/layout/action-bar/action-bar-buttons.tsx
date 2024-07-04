@@ -18,7 +18,10 @@ export default function ActionBarButtons({
   const favorites = useBoundStore((state) => state.favorites);
 
   return (
-    <ul className={cn("flex md:gap-1", className)} {...props}>
+    <ul
+      className={cn("flex md:gap-1 justify-center items-center", className)}
+      {...props}
+    >
       <li>
         <Link href="/wishlist">
           <ActionBarButton
@@ -31,7 +34,7 @@ export default function ActionBarButtons({
       <li>
         <ActionBarButton icon={ShoppingCart} label="Корзина" />
       </li>
-      <li>
+      <li className="px-2 flex justify-center items-center">
         <ActionBarProfile />
       </li>
     </ul>
