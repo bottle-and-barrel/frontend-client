@@ -3,8 +3,8 @@
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import { Button, ButtonProps } from "../../ui/button";
+import { PageMenuCategories } from "../categories/page-menu-categories";
 import PageMenu from "./page-menu/page-menu";
-import { PageMenuCategories } from "./page-menu/page-menu-categories";
 
 export interface ActionBarMenuProps extends ButtonProps {}
 
