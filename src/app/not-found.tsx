@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/button";
 import { SearchX } from "lucide-react";
 import Link from "next/link";
 
@@ -17,9 +17,9 @@ export default function NotFoundPage() {
           другие!
         </Link>
       </p>
-      <Link href="/" className="pt-4">
-        <Button>Продолжить покупки</Button>
-      </Link>
+      <LinkButton href="/" className="mt-4">
+        Продолжить покупки
+      </LinkButton>
     </div>
   );
 }

@@ -2,10 +2,9 @@
 
 import ProductCard from "@/components/products/product-card";
 import { useAppStore } from "@/components/providers/zustand";
-import { Button } from "@/components/ui/button";
+import { LinkButton } from "@/components/ui/button";
 import CardList from "@/components/ui/card-list";
 import { HeartCrack } from "lucide-react";
-import Link from "next/link";
 
 function WishlistNoItems() {
   return (
@@ -15,9 +14,9 @@ function WishlistNoItems() {
       <p className="text-black/60 font-light">
         Понравился товар? Сохраните его в избранные и он окажется здесь!
       </p>
-      <Link href="/">
-        <Button>Продолжить покупки</Button>
-      </Link>
+      <LinkButton href="/" className="mt-4">
+        Продолжить покупки
+      </LinkButton>
     </div>
   );
 }

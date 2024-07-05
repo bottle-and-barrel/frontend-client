@@ -1,13 +1,12 @@
-import { Button, ButtonProps } from "@/components/ui/button";
+import { LinkButton, LinkButtonProps } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/util";
 import { Category, KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
-import Link from "next/link";
 import { HTMLAttributes } from "react";
 
-interface PageMenuCategoryProps extends ButtonProps {
+interface PageMenuCategoryProps extends Omit<LinkButtonProps, "href"> {
   category: Category;
 }
 export interface PageMenuCategoriesProps
@@ -21,14 +20,14 @@ function PageMenuItem({
   ...props
 }: PageMenuCategoryProps) {
   return (
-    <Button
+    <LinkButton
+      href={category.link}
       variant="text"
       className={cn("py-6 w-full justify-start", className)}
-      asChild
       {...props}
     >
-      <Link href={category.link}>{category.name}</Link>
-    </Button>
+      {category.name}
+    </LinkButton>
   );
 }
 
