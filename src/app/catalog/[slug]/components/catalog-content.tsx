@@ -1,5 +1,7 @@
 "use client";
 
+import LoadingError from "@/components/loading/loading-error";
+import LoadingSpinner from "@/components/loading/loading-spinner";
 import ProductCard from "@/components/products/product-card-base";
 import CardList from "@/components/ui/card-list";
 import { cn } from "@/lib/util";
@@ -16,10 +18,13 @@ export default function CatalogContent({
   className,
   ...props
 }: CatalogContentProps) {
-  const { data } = useQuery({
+  const { data, isError, isLoading } = useQuery({
     queryKey: [KEY, slug],
     queryFn: () => getBySlug(slug),
   });
+
+  if (isLoading) return <LoadingSpinner className="py-4" />;
+  if (isError) return <LoadingError />;
 
   return (
     <section className={cn("flex flex-col gap-4", className)} {...props}>
