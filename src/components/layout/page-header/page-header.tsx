@@ -5,12 +5,10 @@ import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
 import { KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
-import { HTMLAttributes, useState } from "react";
+import { HTMLAttributes } from "react";
 import ActionBar from "../action-bar/action-bar";
 import CategoryBar from "../category-bar/category-bar";
 import PageBottomNavigation from "./page-bottom-navigation";
-import PageMenu from "./page-menu";
-import { PageMenuCategories } from "./page-menu-categories";
 
 function CategoryBarSkeleton({
   className,
@@ -26,22 +24,7 @@ function CategoryBarSkeleton({
   );
 }
 
-function MenuSkeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn("py-6 flex flex-col gap-6", className)} {...props}>
-      <Skeleton className="h-8 w-full" />
-      <Skeleton className="h-8 w-full" />
-      <Skeleton className="h-8 w-full" />
-      <Skeleton className="h-8 w-full" />
-      <Skeleton className="h-8 w-full" />
-      <Skeleton className="h-8 w-full" />
-    </div>
-  );
-}
-
 export default function PageHeader() {
-  const [menuOpened, setMenuOpened] = useState(false);
-
   const { data, isLoading, isError } = useQuery({
     queryKey: [KEY],
     queryFn: all,
@@ -49,7 +32,7 @@ export default function PageHeader() {
 
   return (
     <header className="pb-2">
-      <ActionBar setMenuOpened={setMenuOpened} />
+      <ActionBar />
       <LoadingWrapper
         isLoading={isLoading}
         isError={isError}
@@ -57,18 +40,6 @@ export default function PageHeader() {
       >
         <CategoryBar className="mt-2 hidden xs:block" categories={data || []} />
       </LoadingWrapper>
-      <PageMenu open={menuOpened} onOpenChange={setMenuOpened}>
-        <LoadingWrapper
-          isLoading={isLoading}
-          isError={isError}
-          skeleton={<MenuSkeleton />}
-        >
-          <PageMenuCategories
-            categories={data || []}
-            onCategoryClick={() => setMenuOpened(false)}
-          />
-        </LoadingWrapper>
-      </PageMenu>
       <PageBottomNavigation className="xs:hidden" />
     </header>
   );

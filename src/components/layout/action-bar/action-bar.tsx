@@ -6,15 +6,9 @@ import { ActionBarButtons } from "./action-bar-buttons";
 import ActionBarMenu from "./action-bar-menu";
 import ActionBarSearch from "./action-bar-search";
 
-export interface ActionBarProps extends HTMLAttributes<HTMLDivElement> {
-  setMenuOpened: (state: boolean) => void;
-}
+export interface ActionBarProps extends HTMLAttributes<HTMLDivElement> {}
 
-export default function ActionBar({
-  setMenuOpened,
-  className,
-  ...props
-}: ActionBarProps) {
+export default function ActionBar({ className, ...props }: ActionBarProps) {
   return (
     <div
       className={cn("flex justify-between items-center gap-6", className)}
@@ -25,10 +19,7 @@ export default function ActionBar({
       </Link>
       <ActionBarSearch className="flex-grow" />
       <ActionBarButtons className="hidden xs:flex" />
-      <ActionBarMenu
-        className="block xs:hidden"
-        onClick={(e) => setMenuOpened(true)}
-      />
+      <ActionBarMenu className="block xs:hidden" />
     </div>
   );
 }
