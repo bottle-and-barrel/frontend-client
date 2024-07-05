@@ -1,8 +1,8 @@
 import getQueryClient from "@/components/util/query-client";
 import { KEY, all } from "@/service/category";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
-import ActionBar from "../action-bar/action-bar";
-import CategoryBar from "../category-bar/category-bar";
+import ActionBar from "./action-bar/action-bar";
+import CategoryBar from "./category-bar/category-bar";
 import PageBottomNavigation from "./page-bottom-navigation";
 
 export default async function PageHeader() {
