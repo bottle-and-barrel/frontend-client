@@ -9,7 +9,6 @@ import {
 import useAuth from "@/hooks/use-auth";
 import { toIndicator } from "@/lib/util";
 import { Heart, Home, ShoppingCart, User } from "lucide-react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
@@ -24,35 +23,31 @@ export default function PageBottomNavigation(props: PageBottomNavigationProps) {
 
   return (
     <NavigationBar {...props}>
-      <Link href="/">
-        <NavigationBarButton
-          icon={Home}
-          label="Главная"
-          active={pathname == "/"}
-        />
-      </Link>
-      <Link href="/wishlist">
-        <NavigationBarButton
-          icon={Heart}
-          label="Избранное"
-          active={pathname == "/wishlist"}
-          indicator={toIndicator(favorites)}
-        />
-      </Link>
-      <Link href="/cart">
-        <NavigationBarButton
-          icon={ShoppingCart}
-          label="Корзина"
-          active={pathname == "/cart"}
-        />
-      </Link>
-      <Link href={isLoggedIn ? "/cabinet" : "/sign-in"}>
-        <NavigationBarButton
-          icon={User}
-          label={isLoggedIn ? "Личный кабинет" : "Вход"}
-          active={pathname == (isLoggedIn ? "/cabinet" : "/sign-in")}
-        />
-      </Link>
+      <NavigationBarButton
+        href="/"
+        icon={Home}
+        label="Главная"
+        active={pathname == "/"}
+      />
+      <NavigationBarButton
+        href="/wishlist"
+        icon={Heart}
+        label="Избранное"
+        active={pathname == "/wishlist"}
+        indicator={toIndicator(favorites)}
+      />
+      <NavigationBarButton
+        href="/cart"
+        icon={ShoppingCart}
+        label="Корзина"
+        active={pathname == "/cart"}
+      />
+      <NavigationBarButton
+        href={isLoggedIn ? "/cabinet" : "/sign-in"}
+        icon={User}
+        label={isLoggedIn ? "Личный кабинет" : "Вход"}
+        active={pathname == (isLoggedIn ? "/cabinet" : "/sign-in")}
+      />
     </NavigationBar>
   );
 }

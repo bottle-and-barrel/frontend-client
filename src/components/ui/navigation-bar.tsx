@@ -1,10 +1,10 @@
 import { cn } from "@/lib/util";
 import { LucideProps } from "lucide-react";
 import { HTMLAttributes } from "react";
-import { Button, ButtonProps } from "./button";
+import { LinkButton, LinkButtonProps } from "./button";
 
 export interface NavigationBarProps extends HTMLAttributes<HTMLDivElement> {}
-export interface NavigationBarButtonProps extends ButtonProps {
+export interface NavigationBarButtonProps extends LinkButtonProps {
   active?: boolean;
   icon: React.FC<LucideProps>;
   label: string;
@@ -32,7 +32,7 @@ export function NavigationBarButton({
   ...props
 }: NavigationBarButtonProps) {
   return (
-    <Button
+    <LinkButton
       variant="text"
       className={cn(
         "flex-grow flex-col h-14 text-black/50 data-[active=true]:text-primary",
@@ -50,6 +50,6 @@ export function NavigationBarButton({
         )}
       </div>
       <p className="text-xs font-light">{label}</p>
-    </Button>
+    </LinkButton>
   );
 }
