@@ -1,47 +1,15 @@
-"use client";
-
+import { all } from "@/api/category";
 import Brand from "@/components/ui/brand";
-import { Skeleton } from "@/components/ui/skeleton";
-import LoadingWrapper from "@/components/util/loading-wrapper";
 import { cn } from "@/lib/util";
-import { Category, KEY, all } from "@/service/category";
-import { useQuery } from "@tanstack/react-query";
+import { KEY } from "@/service/category";
 import Image from "next/image";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
+import getQueryClient from "../util/query-client";
+import FooterCategories from "./categories/footer-categories";
 
-interface FooterCategoriesProps extends HTMLAttributes<HTMLDivElement> {
-  categories: Category[];
-}
+export interface FooterListProps extends HTMLAttributes<HTMLDivElement> {}
 export interface PageFooterProps extends HTMLAttributes<HTMLDivElement> {}
-
-function FooterList({
-  title,
-  className,
-  children,
-  ...props
-}: HTMLAttributes<HTMLDivElement>) {
-  return (
-    <section className={cn("space-y-4", className)} {...props}>
-      <h1 className="pb-1 w-full border-b-2 text-neutral-300 border-neutral-400/50 md:w-max">
-        {title}
-      </h1>
-      <ul className="text-neutral-400">{children}</ul>
-    </section>
-  );
-}
-
-function FooterListItem({
-  className,
-  ...props
-}: HTMLAttributes<HTMLLIElement>) {
-  return (
-    <li
-      className={cn("w-max  font-light hover:text-neutral-300", className)}
-      {...props}
-    />
-  );
-}
 
 function FooterInfo() {
   return (
@@ -95,32 +63,6 @@ function FooterInfo() {
   );
 }
 
-function FooterCategories({ categories, ...props }: FooterCategoriesProps) {
-  return (
-    <FooterList title="Категории" {...props}>
-      {categories?.map((c, i) => (
-        <FooterListItem key={i}>
-          <Link className="py-1" href={c.link}>
-            {c.name}
-          </Link>
-        </FooterListItem>
-      ))}
-    </FooterList>
-  );
-}
-
-function FooterCategoriesSkeleton() {
-  return (
-    <FooterList title="Категории">
-      {[...Array(5)].map((c, i) => (
-        <FooterListItem key={i} className="my-2">
-          <Skeleton className="h-4 w-[120px] bg-neutral-300/50" />
-        </FooterListItem>
-      ))}
-    </FooterList>
-  );
-}
-
 function FooterLinks(props: HTMLAttributes<HTMLDivElement>) {
   return (
     <FooterList title="Клиентам" {...props}>
@@ -153,8 +95,40 @@ function FooterLinks(props: HTMLAttributes<HTMLDivElement>) {
   );
 }
 
-export default function PageFooter({ className, ...props }: PageFooterProps) {
-  const { data, isLoading, isError } = useQuery({
+export function FooterList({
+  title,
+  className,
+  children,
+  ...props
+}: FooterListProps) {
+  return (
+    <section className={cn("space-y-4", className)} {...props}>
+      <h1 className="pb-1 w-full border-b-2 text-neutral-300 border-neutral-400/50 md:w-max">
+        {title}
+      </h1>
+      <ul className="text-neutral-400">{children}</ul>
+    </section>
+  );
+}
+
+export function FooterListItem({
+  className,
+  ...props
+}: HTMLAttributes<HTMLLIElement>) {
+  return (
+    <li
+      className={cn("w-max  font-light hover:text-neutral-300", className)}
+      {...props}
+    />
+  );
+}
+
+export default async function PageFooter({
+  className,
+  ...props
+}: PageFooterProps) {
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery({
     queryKey: [KEY],
     queryFn: all,
   });
@@ -168,13 +142,7 @@ export default function PageFooter({ className, ...props }: PageFooterProps) {
       {...props}
     >
       <FooterInfo />
-      <LoadingWrapper
-        isLoading={isLoading}
-        isError={isError}
-        skeleton={<FooterCategoriesSkeleton />}
-      >
-        <FooterCategories categories={data || []} />
-      </LoadingWrapper>
+      <FooterCategories />
       <FooterLinks />
     </footer>
   );
