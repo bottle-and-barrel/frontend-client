@@ -62,7 +62,7 @@ export function ActionBarButtons({
       <li>
         <ActionBarButton icon={ShoppingCart} label="Корзина" />
       </li>
-      <li className="px-2 flex justify-center items-center">
+      <li className="flex justify-center items-center">
         <ActionBarProfile />
       </li>
     </ul>

@@ -1,6 +1,5 @@
 "use client";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,11 +8,11 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Skeleton } from "@/components/ui/skeleton";
 import { me } from "@/service/auth";
 import { useQuery } from "@tanstack/react-query";
 import { LogOut, User } from "lucide-react";
 import Link from "next/link";
+import { ActionBarButton } from "./action-bar-buttons";
 
 export default function UserProfile() {
   const { data, isLoading } = useQuery({
@@ -21,14 +20,19 @@ export default function UserProfile() {
     queryFn: () => me(),
   });
 
-  if (isLoading) return <Skeleton className="w-8 h-8 rounded-full" />;
+  if (isLoading)
+    return (
+      <ActionBarButton
+        icon={User}
+        label="Загрузка.."
+        className="text-black/30 pointer-events-none"
+      />
+    );
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage src="/images/placeholders/user.png" />
-        </Avatar>
+        <ActionBarButton icon={User} label="Профиль" />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>{data!.name}</DropdownMenuLabel>
