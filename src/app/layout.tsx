@@ -2,6 +2,7 @@ import PageContainer from "@/components/layout/page-container";
 import PageFooter from "@/components/layout/page-footer/page-footer";
 import PageHeader from "@/components/layout/page-header/page-header";
 import ReactQueryProvider from "@/components/providers/react-query";
+import { StoreProvider } from "@/components/providers/zustand";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/util";
 import type { Metadata } from "next";
@@ -37,13 +38,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(font.className, "h-screen")}>
-        <ReactQueryProvider>
-          <PageContainer>
-            <PageHeader />
-            {children}
-          </PageContainer>
-          <PageFooter className="mt-auto" />
-        </ReactQueryProvider>
+        <StoreProvider>
+          <ReactQueryProvider>
+            <PageContainer>
+              <PageHeader />
+              {children}
+            </PageContainer>
+            <PageFooter className="mt-auto" />
+          </ReactQueryProvider>
+        </StoreProvider>
         <Toaster />
       </body>
     </html>
