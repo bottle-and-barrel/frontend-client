@@ -1,12 +1,17 @@
 import { StateCreator } from "zustand";
 
-export interface FavoriteSlice {
+export interface FavoriteState {
   favorites: number[];
+}
+
+export interface FavoriteActions {
   addToFavorite: (id: number) => void;
   removeFromFavorites: (id: number) => void;
   toggleFavorite: (id: number, state?: boolean) => void;
   isFavorite: (id: number) => boolean;
 }
+
+export interface FavoriteSlice extends FavoriteState, FavoriteActions {}
 
 const _addToFavorite = (state: FavoriteSlice, id: number) => {
   const favoritesSet = new Set(state.favorites).add(id);
@@ -32,8 +37,12 @@ const _toggleFavorite = (
   return _addToFavorite(state, id);
 };
 
-const createFavoriteSlice: StateCreator<FavoriteSlice> = (set, get) => ({
+const initialState: FavoriteState = {
   favorites: [],
+};
+
+const createFavoriteSlice: StateCreator<FavoriteSlice> = (set, get) => ({
+  ...initialState,
   addToFavorite: (id) => {
     set((state) => _addToFavorite(state, id));
   },
@@ -46,4 +55,4 @@ const createFavoriteSlice: StateCreator<FavoriteSlice> = (set, get) => ({
   isFavorite: (id) => get().favorites.includes(id),
 });
 
-export default createFavoriteSlice;
+export { createFavoriteSlice, initialState };

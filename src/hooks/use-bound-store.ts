@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { syncTabs } from "zustand-sync-tabs";
 import { persist } from "zustand/middleware";
-import createFavoriteSlice, { FavoriteSlice } from "../store/favorite";
+import { createFavoriteSlice, FavoriteSlice } from "../store/favorite";
 
 type StoreType = FavoriteSlice;
 
