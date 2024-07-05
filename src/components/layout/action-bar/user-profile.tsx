@@ -15,12 +15,12 @@ import Link from "next/link";
 import { ActionBarButton } from "./action-bar-buttons";
 
 export default function UserProfile() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["me"],
     queryFn: () => me(),
   });
 
-  if (isLoading)
+  if (isLoading) {
     return (
       <ActionBarButton
         icon={User}
@@ -28,6 +28,18 @@ export default function UserProfile() {
         className="text-black/30 pointer-events-none"
       />
     );
+  }
+  if (isError) {
+    return (
+      <ActionBarButton
+        icon={User}
+        label="Ошибка"
+        className="text-red-500 cursor-pointer"
+        title="Нажмите для перезагрузки"
+        onClick={(e) => window.location.reload()}
+      />
+    );
+  }
 
   return (
     <DropdownMenu>
