@@ -4,7 +4,7 @@ import SignInDialog from "@/components/auth/sign-in-dialog";
 import useAuth from "@/hooks/use-auth";
 import { User } from "lucide-react";
 import { useState } from "react";
-import ActionBarButton from "./action-bar-button";
+import { ActionBarButton } from "./action-bar-buttons";
 import UserProfile from "./user-profile";
 
 export default function ActionBarProfile() {

@@ -2,7 +2,7 @@ import { cn } from "@/lib/util";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
 import Brand from "../../ui/brand";
-import ActionBarButtons from "./action-bar-buttons";
+import { ActionBarButtons } from "./action-bar-buttons";
 import ActionBarMenu from "./action-bar-menu";
 import ActionBarSearch from "./action-bar-search";
 

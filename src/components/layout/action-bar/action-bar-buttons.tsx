@@ -2,16 +2,44 @@
 
 import { useAppStore } from "@/components/providers/zustand";
 import { cn, toIndicator } from "@/lib/util";
-import { Heart, ShoppingCart } from "lucide-react";
+import { Heart, LucideProps, ShoppingCart } from "lucide-react";
 import Link from "next/link";
 import { HTMLAttributes } from "react";
-import ActionBarButton from "./action-bar-button";
 import ActionBarProfile from "./action-bar-profile";
 
+export interface ActionBarButtonProps extends HTMLAttributes<HTMLDivElement> {
+  icon: React.FC<LucideProps>;
+  label: string;
+  indicator?: string;
+}
 export interface ActionBarButtonsProps
   extends HTMLAttributes<HTMLUListElement> {}
 
-export default function ActionBarButtons({
+export function ActionBarButton({
+  className,
+  icon: Icon,
+  label,
+  indicator,
+  ...props
+}: ActionBarButtonProps) {
+  const elementClass =
+    "rounded-md px-3 flex flex-col justify-center items-center h-16 text-primary hover:text-accent";
+  return (
+    <div className={cn(elementClass, className)} {...props}>
+      <div className="relative">
+        <Icon strokeWidth={1} height={32} />
+        {indicator && (
+          <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-light text-white bg-accent border-2 border-white rounded-full -top-1 -end-2">
+            {indicator}
+          </div>
+        )}
+      </div>
+      <p className="text-xs font-light hidden md:block">{label}</p>
+    </div>
+  );
+}
+
+export function ActionBarButtons({
   className,
   ...props
 }: ActionBarButtonsProps) {
