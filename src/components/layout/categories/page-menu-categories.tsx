@@ -1,7 +1,7 @@
+import LoadingError from "@/components/loading/loading-error";
 import { LinkButton, LinkButtonProps } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
-import LoadingError from "@/components/util/loading-error";
 import { cn } from "@/lib/util";
 import { Category, KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";

@@ -1,5 +1,6 @@
 "use client";
 
+import LoadingError from "@/components/loading/loading-error";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -9,7 +10,6 @@ import {
 } from "@/components/ui/navigation-menu";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
-import LoadingError from "@/components/util/loading-error";
 import { cn } from "@/lib/util";
 import { KEY, all } from "@/service/category";
 import { NavigationMenuProps } from "@radix-ui/react-navigation-menu";

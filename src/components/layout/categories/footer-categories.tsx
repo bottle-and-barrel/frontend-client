@@ -1,7 +1,7 @@
 "use client";
 
+import LoadingError from "@/components/loading/loading-error";
 import { Skeleton } from "@/components/ui/skeleton";
-import LoadingError from "@/components/util/loading-error";
 import { KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
