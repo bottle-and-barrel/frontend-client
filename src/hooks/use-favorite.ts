@@ -1,11 +1,16 @@
+import {
+  useAppStore,
+  useAppStoreContext,
+} from "@/components/providers/zustand";
 import { useEffect, useRef, useState } from "react";
-import useBoundStore from "./use-bound-store";
 
 export default function useFavorite(
   id: number
 ): [boolean, (state: boolean) => void] {
-  const favorites = useRef(useBoundStore.getState().favorites);
-  const [toggleFavorite, isFavorite] = useBoundStore((state) => [
+  const store = useAppStoreContext();
+  const favorites = useRef(store.getState().favorites);
+
+  const [toggleFavorite, isFavorite] = useAppStore((state) => [
     state.toggleFavorite,
     state.isFavorite,
   ]);
@@ -14,7 +19,7 @@ export default function useFavorite(
   useEffect(() => {
     setProductFavorite(isFavorite(id));
 
-    return useBoundStore.subscribe((state) => {
+    return store.subscribe((state) => {
       favorites.current = state.favorites;
       setProductFavorite(state.isFavorite(id));
     });

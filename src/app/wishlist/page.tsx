@@ -1,9 +1,9 @@
 "use client";
 
 import ProductCard from "@/components/products/product-card";
+import { useAppStore } from "@/components/providers/zustand";
 import { Button } from "@/components/ui/button";
 import CardList from "@/components/ui/card-list";
-import useBoundStore from "@/hooks/use-bound-store";
 import { HeartCrack } from "lucide-react";
 import Link from "next/link";
 
@@ -23,7 +23,7 @@ function WishlistNoItems() {
 }
 
 export default function WishlistPage() {
-  const favorites = useBoundStore((state) => state.favorites);
+  const favorites = useAppStore((state) => state.favorites);
 
   if (favorites.length === 0) return <WishlistNoItems />;
   return (

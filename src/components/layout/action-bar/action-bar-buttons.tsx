@@ -1,6 +1,6 @@
 "use client";
 
-import useBoundStore from "@/hooks/use-bound-store";
+import { useAppStore } from "@/components/providers/zustand";
 import { cn, toIndicator } from "@/lib/util";
 import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function ActionBarButtons({
   className,
   ...props
 }: ActionBarButtonsProps) {
-  const favorites = useBoundStore((state) => state.favorites);
+  const favorites = useAppStore((state) => state.favorites);
 
   return (
     <ul
