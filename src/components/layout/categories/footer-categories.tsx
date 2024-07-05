@@ -1,6 +1,7 @@
 "use client";
 
 import { Skeleton } from "@/components/ui/skeleton";
+import LoadingError from "@/components/util/loading-error";
 import { KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -19,9 +20,14 @@ function FooterCategoriesSkeleton() {
 }
 
 export default function FooterCategories(props: FooterListProps) {
-  const { data, isLoading } = useQuery({ queryKey: [KEY], queryFn: all });
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [KEY],
+    queryFn: all,
+  });
 
   if (isLoading) return <FooterCategoriesSkeleton />;
+  if (isError) return <LoadingError className="text-primary-foreground" />;
+
   return (
     <FooterList title="Категории" {...props}>
       {data!.map((c, i) => (

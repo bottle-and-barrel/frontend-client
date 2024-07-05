@@ -1,6 +1,7 @@
 import { LinkButton, LinkButtonProps } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Skeleton } from "@/components/ui/skeleton";
+import LoadingError from "@/components/util/loading-error";
 import { cn } from "@/lib/util";
 import { Category, KEY, all } from "@/service/category";
 import { useQuery } from "@tanstack/react-query";
@@ -52,9 +53,13 @@ export function PageMenuCategories({
   onCategoryClick = () => {},
   ...props
 }: PageMenuCategoriesProps) {
-  const { data, isLoading } = useQuery({ queryKey: [KEY], queryFn: all });
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [KEY],
+    queryFn: all,
+  });
 
   if (isLoading) return <PageMenuSkeleton />;
+  if (isError) return <LoadingError className="py-4" />;
   return (
     <ul className={cn("py-4 h-full", className)} {...props}>
       <ScrollArea type="auto" className="h-full">
