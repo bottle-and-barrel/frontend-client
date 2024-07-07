@@ -7,14 +7,17 @@ import {
   NavigationBarProps,
 } from "@/components/ui/navigation-bar";
 import useAuth from "@/hooks/use-auth";
-import { toIndicator } from "@/lib/util";
+import { cn, toIndicator } from "@/lib/util";
 import { Heart, Home, ShoppingCart, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
 export interface PageBottomNavigationProps extends NavigationBarProps {}
 
-export default function PageBottomNavigation(props: PageBottomNavigationProps) {
+export default function PageBottomNavigation({
+  className,
+  ...props
+}: PageBottomNavigationProps) {
   const pathname = usePathname();
   const favorites = useAppStore((state) => state.favorites);
 
@@ -22,7 +25,7 @@ export default function PageBottomNavigation(props: PageBottomNavigationProps) {
   const isLoggedIn = useMemo(() => authData !== undefined, [authData]);
 
   return (
-    <NavigationBar {...props}>
+    <NavigationBar className={cn("py-2", className)} {...props}>
       <NavigationBarButton
         href="/"
         icon={Home}
