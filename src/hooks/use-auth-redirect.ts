@@ -1,3 +1,4 @@
+import { authStorage } from "@/lib/storage";
 import { RedirectType, redirect } from "next/navigation";
 import useAuth from "./use-auth";
 import { useUpdateEffect } from "./use-update-effect";
@@ -9,7 +10,7 @@ export default function useAuthRedirect(
 ): void | never {
   const authData = useAuth();
   useUpdateEffect(() => {
-    const hasAuthData = authData !== undefined;
+    const hasAuthData = authStorage().has();
     if (hasAuthData === expectedAuthState) redirect(url, type);
   }, [authData]);
 }
