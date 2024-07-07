@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import WishlistList from "./components/wishlist-list";
+
+export const metadata: Metadata = {
+  title: "Избранное",
+};
 
 export default function WishlistPage() {
   return (

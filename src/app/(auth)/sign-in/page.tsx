@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import SignInForm from "./components/sign-in-form";
+
+export const metadata: Metadata = {
+  title: "Вход на сайт",
+};
 
 export default function SignInPage() {
   return (

@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import MainSection from "./components/MainSection";
 import ProfileSection from "./components/ProfileSection";
+
+export const metadata: Metadata = {
+  title: "Личный кабинет",
+};
 
 export default function CabinetPage() {
   return (
