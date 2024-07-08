@@ -1,13 +1,19 @@
 import * as categoryApi from "@/api/category";
+import { Product, mapProduct } from "./product";
 
 export const KEY = "category";
 
 export interface Category extends categoryApi.Category {
   link: string;
+  products: Product[];
 }
 
-function mapCategory(category: categoryApi.Category) {
-  return { ...category, link: `/catalog/${category.slug}` } as Category;
+export function mapCategory(category: categoryApi.Category) {
+  return {
+    ...category,
+    link: `/catalog/${category.slug}`,
+    products: category.products.map(mapProduct),
+  } as Category;
 }
 
 export async function all() {

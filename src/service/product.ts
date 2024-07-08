@@ -6,7 +6,7 @@ export interface Product extends productApi.Product {
   link: string;
 }
 
-function mapProduct(product: productApi.Product) {
+export function mapProduct(product: productApi.Product) {
   return { ...product, link: `/products/${product.slug}` } as Product;
 }
 
