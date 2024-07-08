@@ -3,10 +3,10 @@ import { KEY, getBySlug } from "@/service/product";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
-import CarouselSection from "./components/CarouselSection";
-import DescriptionSection from "./components/DescriptionSection";
-import PriceSection from "./components/PriceSection";
-import ProductSection from "./components/ProductSection";
+import CarouselSection from "./components/carousel-section";
+import DescriptionSection from "./components/description-section";
+import PriceSection from "./components/price-section";
+import ProductSection from "./components/product-section";
 
 interface ProductViewPageProps {
   params: { slug: string };

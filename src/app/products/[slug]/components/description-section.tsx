@@ -5,7 +5,7 @@ import { cn } from "@/lib/util";
 import { KEY, getBySlug } from "@/service/product";
 import { useQuery } from "@tanstack/react-query";
 import { HTMLAttributes } from "react";
-import { AttributeTable, AttributeTableItem } from "./AttributeTable";
+import { AttributeTable, AttributeTableItem } from "./attribute-table";
 
 export interface DescriptionSectionProps
   extends HTMLAttributes<HTMLDivElement> {

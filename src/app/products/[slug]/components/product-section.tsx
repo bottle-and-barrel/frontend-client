@@ -4,7 +4,7 @@ import { cn } from "@/lib/util";
 import { KEY, Product } from "@/service/product";
 import { ArrowDown, Star } from "lucide-react";
 import { HTMLAttributes } from "react";
-import { AttributeTable, AttributeTableItem } from "./AttributeTable";
+import { AttributeTable, AttributeTableItem } from "./attribute-table";
 
 export interface ProductSectionProps extends HTMLAttributes<HTMLDivElement> {
   slug: string;
