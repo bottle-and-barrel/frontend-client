@@ -1,7 +1,7 @@
 "use client";
 
 import { Store, createAppStore } from "@/store";
-import { ReactNode, createContext, useContext, useRef } from "react";
+import { ReactNode, createContext, useContext, useEffect, useRef } from "react";
 import { useStore } from "zustand";
 
 export type StoreApi = ReturnType<typeof createAppStore>;
@@ -17,6 +17,18 @@ export const StoreProvider = ({ children }: StoreProviderProps) => {
   if (!storeRef.current) {
     storeRef.current = createAppStore();
   }
+
+  const onStorageChanged = (e: StorageEvent) => {
+    if (!storeRef.current) return;
+    const persist = storeRef.current.persist;
+    const storageKey = persist.getOptions().name;
+    if (e.key === storageKey) persist.rehydrate();
+  };
+
+  useEffect(() => {
+    window.addEventListener("storage", onStorageChanged);
+    return () => window.removeEventListener("storage", onStorageChanged);
+  }, []);
 
   return (
     <StoreContext.Provider value={storeRef.current}>

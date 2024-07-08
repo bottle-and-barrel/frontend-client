@@ -1,4 +1,4 @@
-import { persistNSync } from "persist-and-sync";
+import { persist } from "zustand/middleware";
 import { StateCreator, createStore } from "zustand/vanilla";
 import {
   FavoriteActions,
@@ -27,7 +27,7 @@ const initializer: (state: StoreState) => StateCreator<Store> =
 
 const createAppStore = (state: StoreState = initialState) =>
   createStore<Store>()(
-    persistNSync(initializer(state), {
+    persist(initializer(state), {
       name: StorageKey,
     })
   );
