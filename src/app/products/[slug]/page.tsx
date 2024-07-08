@@ -1,6 +1,7 @@
 import getQueryClient from "@/components/util/query-client";
 import { KEY, getBySlug } from "@/service/product";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import CarouselSection from "./components/CarouselSection";
 import DescriptionSection from "./components/DescriptionSection";
@@ -9,6 +10,20 @@ import ProductSection from "./components/ProductSection";
 
 interface ProductViewPageProps {
   params: { slug: string };
+}
+
+export async function generateMetadata({
+  params,
+}: ProductViewPageProps): Promise<Metadata> {
+  const product = await getBySlug(params.slug);
+  if (!product) return {};
+  return {
+    title: product.name,
+    openGraph: {
+      title: `${product.name} - Купить в интернет-магазине алкоголя Bottle & Barrel`,
+      images: product.images?.[0] ?? undefined,
+    },
+  };
 }
 
 export default async function ProductViewPage({
