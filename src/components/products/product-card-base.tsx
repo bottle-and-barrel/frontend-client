@@ -1,5 +1,6 @@
-import { Product } from "@/api/product";
 import { cn } from "@/lib/util";
+import { Product } from "@/service/product";
+import Link from "next/link";
 import { HTMLAttributes } from "react";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
@@ -32,16 +33,20 @@ export default function ProductCard({
         />
       </div>
       <div className="relative w-full aspect-square">
-        <ImageWithFallback
-          className="object-contain"
-          src={item.images?.[0]}
-          fallbackSrc="/images/placeholders/product.png"
-          alt={item.name}
-          fill={true}
-        />
+        <Link href={item.link}>
+          <ImageWithFallback
+            className="object-contain"
+            src={item.images?.[0]}
+            fallbackSrc="/images/placeholders/product.png"
+            alt={item.name}
+            fill={true}
+          />
+        </Link>
       </div>
       <div className="text-center">
-        <h1>{item.name}</h1>
+        <Link href={item.link}>
+          <h1 className="hover:underline">{item.name}</h1>
+        </Link>
         <p className="text-sm font-light text-black/50">
           Италия, красное, сухое, 0.75л
         </p>
