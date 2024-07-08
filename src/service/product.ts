@@ -20,3 +20,9 @@ export async function getById(id: number) {
   if (!product) return null;
   return mapProduct(product);
 }
+
+export async function getBySlug(slug: string) {
+  const product = await productApi.getBySlug(slug);
+  if (!product) return null;
+  return mapProduct(product);
+}

@@ -72,3 +72,7 @@ export async function all() {
 export async function getById(id: number) {
   return products.find((p) => p.id === id);
 }
+
+export async function getBySlug(slug: string) {
+  return products.find((p) => p.slug === slug);
+}
