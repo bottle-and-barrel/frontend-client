@@ -7,22 +7,31 @@ import {
   createFavoriteSlice,
   initialState as favoriteInitialState,
 } from "./favorite";
+import {
+  RecentProductsActions,
+  RecentProductsSlice,
+  RecentProductsState,
+  createRecentSlice,
+  initialState as recentInitialState,
+} from "./recent";
 
 const StorageKey = "app-storage";
 
-export interface StoreState extends FavoriteState {}
-export interface StoreActions extends FavoriteActions {}
-export interface Store extends FavoriteSlice {}
+export interface StoreState extends FavoriteState, RecentProductsState {}
+export interface StoreActions extends FavoriteActions, RecentProductsActions {}
+export interface Store extends FavoriteSlice, RecentProductsSlice {}
 
 const initialState: StoreState = {
   ...favoriteInitialState,
+  ...recentInitialState,
 };
 
 const initializer: (state: StoreState) => StateCreator<Store> =
   (state) =>
   (...a) => ({
-    ...state,
     ...createFavoriteSlice(...a),
+    ...createRecentSlice(...a),
+    ...state,
   });
 
 const createAppStore = (state: StoreState = initialState) =>
